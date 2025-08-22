@@ -12,8 +12,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           {/* Logo Section */}
           <Link href="/" className="flex items-center space-x-3 logo-container">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <img src={logoPath} alt="JSMF Logo" className="w-8 h-8 object-contain" />
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img src={logoPath} alt="JSMF Logo" className="w-14 h-14 object-contain" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-primary">Jay Shree Mahakal</h1>

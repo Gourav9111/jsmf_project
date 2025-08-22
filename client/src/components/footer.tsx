@@ -57,8 +57,8 @@ export default function Footer() {
           {/* Company Info */}
           <div data-testid="footer-company-info">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <img src={logoPath} alt="JSMF Logo" className="w-6 h-6 object-contain" />
+              <div className="w-14 h-14 flex items-center justify-center">
+                <img src={logoPath} alt="JSMF Logo" className="w-12 h-12 object-contain" />
               </div>
               <div>
                 <h3 className="font-bold text-lg">Jay Shree Mahakal</h3>

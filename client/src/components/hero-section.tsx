@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, MapPin, Instagram, CheckCircle } from "lucide-react";
+import logoPath from "@assets/Gemini_Generated_Image_bq4jlqbq4jlqbq4j (1)_1755873870848.png";
 
 export default function HeroSection() {
   const [formData, setFormData] = useState({
@@ -78,6 +79,17 @@ export default function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
+            {/* Company Logo */}
+            <div className="flex items-center justify-center lg:justify-start mb-6">
+              <div className="w-20 h-20 mr-4">
+                <img src={logoPath} alt="JSMF Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="text-left">
+                <h2 className="text-2xl font-bold text-white">Jay Shree Mahakal</h2>
+                <p className="text-lg text-yellow-300">Finance Service</p>
+              </div>
+            </div>
+            
             <div className="inline-block bg-accent-red px-4 py-2 rounded-full text-white font-semibold mb-6" data-testid="roi-badge">
               <span className="text-2xl font-bold">7.5% ROI</span> - Reducing Interest Rate
             </div>
