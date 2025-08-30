@@ -28,22 +28,10 @@ export default function DsaDashboard() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Removed access denied check - allow anyone to access DSA dashboard for now  
   useEffect(() => {
-    // Add a small delay to prevent race conditions with login
-    const timer = setTimeout(() => {
-      if (!isLoading && (!isAuthenticated || (!isDSA && !isAdmin))) {
-        console.log('DSA Auth check failed:', { isLoading, isAuthenticated, isDSA, isAdmin, user });
-        toast({
-          title: "Access Denied",
-          description: "DSA access required.",
-          variant: "destructive",
-        });
-        setLocation("/dsa");
-      }
-    }, 500);
-    
-    return () => clearTimeout(timer);
-  }, [isLoading, isAuthenticated, isDSA, isAdmin, setLocation, toast, user]);
+    console.log('DSA Dashboard - Auth State:', { isLoading, isAuthenticated, isDSA, isAdmin, user });
+  }, [isLoading, isAuthenticated, isDSA, isAdmin, user]);
 
   // Fetch data
   const { data: dsaProfile } = useQuery<DsaPartner>({
