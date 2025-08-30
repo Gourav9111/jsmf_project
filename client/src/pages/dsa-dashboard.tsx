@@ -23,21 +23,27 @@ import {
 } from "lucide-react";
 
 export default function DsaDashboard() {
-  const { user, isLoading, isAuthenticated, isDSA } = useAuth();
+  const { user, isLoading, isAuthenticated, isDSA, isAdmin } = useAuth();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!isLoading && (!isAuthenticated || !isDSA)) {
-      toast({
-        title: "Access Denied",
-        description: "DSA access required.",
-        variant: "destructive",
-      });
-      setLocation("/dsa");
-    }
-  }, [isLoading, isAuthenticated, isDSA, setLocation, toast]);
+    // Add a small delay to prevent race conditions with login
+    const timer = setTimeout(() => {
+      if (!isLoading && (!isAuthenticated || (!isDSA && !isAdmin))) {
+        console.log('DSA Auth check failed:', { isLoading, isAuthenticated, isDSA, isAdmin, user });
+        toast({
+          title: "Access Denied",
+          description: "DSA access required.",
+          variant: "destructive",
+        });
+        setLocation("/dsa");
+      }
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [isLoading, isAuthenticated, isDSA, isAdmin, setLocation, toast, user]);
 
   // Fetch data
   const { data: dsaProfile } = useQuery<DsaPartner>({

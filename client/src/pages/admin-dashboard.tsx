@@ -30,15 +30,21 @@ export default function AdminDashboard() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!isLoading && (!isAuthenticated || !isAdmin)) {
-      toast({
-        title: "Access Denied",
-        description: "Admin access required.",
-        variant: "destructive",
-      });
-      setLocation("/admin");
-    }
-  }, [isLoading, isAuthenticated, isAdmin, setLocation, toast]);
+    // Add a small delay to prevent race conditions with login
+    const timer = setTimeout(() => {
+      if (!isLoading && (!isAuthenticated || !isAdmin)) {
+        console.log('Auth check failed:', { isLoading, isAuthenticated, isAdmin, user });
+        toast({
+          title: "Access Denied",
+          description: "Admin access required.",
+          variant: "destructive",
+        });
+        setLocation("/admin");
+      }
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [isLoading, isAuthenticated, isAdmin, setLocation, toast, user]);
 
   // Fetch data
   const { data: applications = [] } = useQuery<LoanApplication[]>({

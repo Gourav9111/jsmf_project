@@ -29,15 +29,20 @@ export default function DsaLogin() {
     mutationFn: async (data: LoginFormData) => {
       return apiRequest("POST", "/api/auth/login", data);
     },
-    onSuccess: (response: any) => {
-      if (response.user?.role === "dsa") {
+    onSuccess: async (response: any) => {
+      if (response.user?.role === "dsa" || response.user?.role === "admin") {
         // Update the query cache with the logged in user data
         queryClient.setQueryData(["/api/auth/user"], response.user);
+        // Force refetch to ensure data is fresh
+        await queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
         toast({
           title: "Login Successful",
           description: `Welcome back, ${response.user.fullName}!`,
         });
-        setLocation("/dsa/dashboard");
+        // Small delay to ensure state is updated
+        setTimeout(() => {
+          setLocation("/dsa/dashboard");
+        }, 100);
       } else {
         toast({
           title: "Access Denied",
