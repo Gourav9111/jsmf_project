@@ -1,0 +1,69 @@
+# Main .htaccess for JSMF Loan Management System
+# Hostinger shared hosting configuration
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect all requests to index.php if file doesn't exist
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+    
+    # Handle API routes properly
+    RewriteRule ^api/(.*)$ index.php [QSA,L]
+    
+    # Security: Block access to sensitive files
+    <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
+        Require all denied
+    </FilesMatch>
+    
+    # Block access to config and includes directories
+    RewriteRule ^(config|includes)/ - [F,L]
+    
+    # Set proper MIME types
+    <IfModule mod_mime.c>
+        AddType application/json .json
+        AddType text/css .css
+        AddType application/javascript .js
+    </IfModule>
+    
+    # Enable compression
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/html
+        AddOutputFilterByType DEFLATE text/css
+        AddOutputFilterByType DEFLATE text/javascript
+        AddOutputFilterByType DEFLATE application/javascript
+        AddOutputFilterByType DEFLATE application/json
+        AddOutputFilterByType DEFLATE text/xml
+        AddOutputFilterByType DEFLATE application/xml
+        AddOutputFilterByType DEFLATE application/rss+xml
+        AddOutputFilterByType DEFLATE application/atom+xml
+    </IfModule>
+    
+    # Security headers
+    <IfModule mod_headers.c>
+        Header always set X-Frame-Options "SAMEORIGIN"
+        Header always set X-Content-Type-Options "nosniff"
+        Header always set X-XSS-Protection "1; mode=block"
+        Header always set Referrer-Policy "strict-origin-when-cross-origin"
+        
+        # CORS headers for API requests
+        Header always set Access-Control-Allow-Methods "GET, POST, PATCH, DELETE, OPTIONS"
+        Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        Header always set Access-Control-Max-Age "3600"
+    </IfModule>
+</IfModule>
+
+# PHP Settings for better performance and security
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_vars 1000
+    php_flag log_errors on
+    php_flag display_errors off
+    php_flag expose_php off
+</IfModule>
+
+# Default charset
+AddDefaultCharset UTF-8

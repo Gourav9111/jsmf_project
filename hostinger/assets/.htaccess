@@ -1,0 +1,44 @@
+# .htaccess for assets directory
+# Allow access to static files (CSS, JS, images)
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Allow direct access to static files
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^.*$ - [L]
+    
+    # Set proper MIME types
+    <IfModule mod_mime.c>
+        AddType text/css .css
+        AddType application/javascript .js
+        AddType image/png .png
+        AddType image/jpeg .jpg .jpeg
+        AddType image/gif .gif
+        AddType image/svg+xml .svg
+        AddType font/woff .woff
+        AddType font/woff2 .woff2
+    </IfModule>
+    
+    # Enable compression
+    <IfModule mod_deflate.c>
+        AddOutputFilterByType DEFLATE text/css
+        AddOutputFilterByType DEFLATE application/javascript
+        AddOutputFilterByType DEFLATE text/html
+        AddOutputFilterByType DEFLATE text/plain
+        AddOutputFilterByType DEFLATE text/xml
+        AddOutputFilterByType DEFLATE application/json
+    </IfModule>
+    
+    # Set cache headers
+    <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresByType text/css "access plus 1 month"
+        ExpiresByType application/javascript "access plus 1 month"
+        ExpiresByType image/png "access plus 1 month"
+        ExpiresByType image/jpg "access plus 1 month"
+        ExpiresByType image/jpeg "access plus 1 month"
+        ExpiresByType image/gif "access plus 1 month"
+        ExpiresByType image/svg+xml "access plus 1 month"
+    </IfModule>
+</IfModule>
