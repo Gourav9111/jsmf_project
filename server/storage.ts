@@ -66,16 +66,16 @@ export class MemStorage implements IStorage {
   }
 
   private async initializeDefaultUsers() {
-    // Create default admin user
+    // Create admin user
     const adminId = randomUUID();
-    const hashedPassword = await bcrypt.hash("admin123", 10);
+    const hashedPassword = await bcrypt.hash("Harsh@9191", 10);
     this.users.set(adminId, {
       id: adminId,
-      username: "admin",
-      email: "admin@jsmf.com",
+      username: "harsh@jsmf.in",
+      email: "harsh@jsmf.in",
       password: hashedPassword,
       role: "admin",
-      fullName: "System Administrator",
+      fullName: "Harsh Kumar",
       mobileNumber: "+91 91626 207918",
       city: "Bhopal",
       isActive: true,
