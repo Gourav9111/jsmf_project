@@ -68,12 +68,12 @@ Change `const API_BASE_URL = 'backend/api';` to match your hosting structure.
 
 1. Visit your domain to see the homepage
 2. Test user registration and login
-3. Test admin login with default credentials: `admin` / `admin123`
+3. Test admin login with your admin credentials
 4. Verify all forms are working properly
 
-## 🔐 Default Login Credentials
+## 🔐 Admin Access
 
-- **Admin**: `admin` / `admin123`
+- Contact system administrator for admin credentials
 - **Users**: Can register through the user portal
 - **DSA Partners**: Can apply through the homepage form
 

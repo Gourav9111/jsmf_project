@@ -88,12 +88,6 @@ export default function AdminLogin() {
           </CardHeader>
 
           <CardContent className="space-y-6">
-            <Alert>
-              <Shield className="h-4 w-4" />
-              <AlertDescription>
-                Default credentials: <strong>admin</strong> / <strong>admin123</strong>
-              </AlertDescription>
-            </Alert>
 
             <form onSubmit={handleSubmit} className="space-y-4" data-testid="admin-login-form">
               <div className="space-y-2">
