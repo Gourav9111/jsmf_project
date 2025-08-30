@@ -110,16 +110,16 @@ CREATE TABLE contact_queries (
     INDEX idx_mobile (mobile_number)
 );
 
--- Insert default admin user
--- Password: Admin@123 (change this after deployment)
+-- Insert default admin user  
+-- Username: harsh@jsmf.in, Password: Harsh@9131
 INSERT INTO users (id, username, email, password, role, full_name, mobile_number, city, is_active, created_at, updated_at) 
 VALUES (
     UUID(),
+    'harsh@jsmf.in',
+    'harsh@jsmf.in',
+    '$2y$10$ZcdzNT4nelKHU/yPbnKP1.2ELtxgHGQm3jKfHEAXlJOco3zYls31G',
     'admin',
-    'admin@jsmf.com',
-    '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-    'admin',
-    'System Administrator',
+    'Harsh Kumar',
     '+91 91626 207918',
     'Bhopal',
     TRUE,

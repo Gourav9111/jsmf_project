@@ -74,8 +74,8 @@ Set the following permissions:
 1. **Visit your website:** `https://yourdomain.com`
 2. **Test API endpoints:** `https://yourdomain.com/api/auth/login`
 3. **Default admin login:**
-   - Username: `admin`
-   - Password: `Admin@123` (change immediately after first login)
+   - Username: `harsh@jsmf.in`
+   - Password: `Harsh@9131`
 
 ## API Endpoints Reference
 

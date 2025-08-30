@@ -7,8 +7,6 @@
 require_once 'includes/functions.php';
 require_once 'includes/session.php';
 
-handleCORS();
-
 // Get the request URI and method
 $request_uri = $_SERVER['REQUEST_URI'];
 $request_method = $_SERVER['REQUEST_METHOD'];
