@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Handshake, ArrowLeft, UserPlus } from "lucide-react";
@@ -23,6 +23,7 @@ export default function DsaLogin() {
   });
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginFormData) => {
@@ -30,6 +31,8 @@ export default function DsaLogin() {
     },
     onSuccess: (response: any) => {
       if (response.user?.role === "dsa") {
+        // Update the query cache with the logged in user data
+        queryClient.setQueryData(["/api/auth/user"], response.user);
         toast({
           title: "Login Successful",
           description: `Welcome back, ${response.user.fullName}!`,
