@@ -1,0 +1,40 @@
+RewriteEngine On
+
+# Handle CORS
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+
+# Handle preflight requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# API routing
+RewriteRule ^api/auth/login/?$ auth/login.php [QSA,L]
+RewriteRule ^api/auth/logout/?$ auth/logout.php [QSA,L]
+RewriteRule ^api/auth/user/?$ auth/user.php [QSA,L]
+
+RewriteRule ^api/users/register/?$ users/register.php [QSA,L]
+
+RewriteRule ^api/loan-applications/?$ loan-applications/index.php [QSA,L]
+RewriteRule ^api/loan-applications/([0-9a-f-]+)/?$ loan-applications/update.php?id=$1 [QSA,L]
+
+RewriteRule ^api/dsa-partners/?$ dsa-partners/index.php [QSA,L]
+RewriteRule ^api/dsa-partners/profile/?$ dsa-partners/profile.php [QSA,L]
+
+RewriteRule ^api/leads/?$ leads/index.php [QSA,L]
+RewriteRule ^api/leads/([0-9a-f-]+)/assign/?$ leads/assign.php?id=$1 [QSA,L]
+RewriteRule ^api/leads/([0-9a-f-]+)/?$ leads/update.php?id=$1 [QSA,L]
+
+RewriteRule ^api/contact-queries/?$ contact-queries/index.php [QSA,L]
+
+# Prevent access to sensitive files
+<Files "*.php">
+    <RequireAll>
+        Require all granted
+    </RequireAll>
+</Files>
+
+<FilesMatch "\.(inc|conf|config)$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Shree Mahakal Finance Service - Loan Solutions in Bhopal</title>
+    <meta name="description" content="Professional finance services in Bhopal with same-day approvals and minimum documentation. Personal loans, business loans, home loans with 7.5% ROI.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white font-sans">
+    <!-- Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo Section -->
+                <a href="#home" class="flex items-center space-x-3 logo-container">
+                    <div class="w-16 h-16 flex items-center justify-center">
+                        <img src="assets/images/logo.png" alt="JSMF Logo" class="w-14 h-14 object-contain">
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-blue-600">Jay Shree Mahakal</h1>
+                        <p class="text-sm text-gray-600">Finance Service</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Home</a>
+                    <a href="#loans" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Loans</a>
+                    <a href="#calculator" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">EMI Calculator</a>
+                    <a href="#dsa" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">DSA Partner</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-blue-600" id="mobile-menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="md:hidden bg-white border-t border-gray-200 hidden" id="mobile-menu">
+                <div class="px-4 py-2 space-y-2">
+                    <a href="#home" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                    <a href="#loans" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Loans</a>
+                    <a href="#calculator" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">EMI Calculator</a>
+                    <a href="#dsa" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">DSA Partner</a>
+                    <a href="#contact" class="block py-3 text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-16">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1926&h=1080" 
+                 alt="Professional business consultation" 
+                 class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <!-- Company Logo -->
+                    <div class="flex items-center justify-center lg:justify-start mb-6">
+                        <div class="w-20 h-20 mr-4">
+                            <img src="assets/images/logo.png" alt="JSMF Logo" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-left">
+                            <h2 class="text-2xl font-bold text-white">Jay Shree Mahakal</h2>
+                            <p class="text-lg text-yellow-300">Finance Service</p>
+                        </div>
+                    </div>
+                    
+                    <div class="inline-block bg-red-600 px-4 py-2 rounded-full text-white font-semibold mb-6">
+                        <span class="text-2xl font-bold">7.5% ROI</span> - Reducing Interest Rate
+                    </div>
+                    
+                    <h1 class="text-4xl lg:text-5xl font-bold mb-6">
+                        Fast & Secure <span class="text-yellow-300">Loan Solutions</span>
+                    </h1>
+                    
+                    <p class="text-xl mb-8 opacity-90">
+                        Professional finance services in Bhopal with same-day approvals and minimum documentation.
+                    </p>
+
+                    <!-- Key Highlights -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                            <span class="font-medium">Same-day Personal Loan</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                            <span class="font-medium">Salary eligibility from ₹15k+</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                            <span class="font-medium">Daily Business Funding</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-green-400 text-xl"></i>
+                            <span class="font-medium">Minimum Documents Required</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button class="bg-red-600 hover:bg-red-700 px-8 py-4 text-white font-semibold shadow-lg rounded transition-colors" onclick="scrollToSection('loans')">
+                            Apply Now
+                        </button>
+                        <button class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 font-semibold shadow-lg rounded transition-colors" onclick="scrollToSection('calculator')">
+                            Calculate EMI
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 font-semibold shadow-lg rounded transition-colors" onclick="scrollToSection('dsa')">
+                            Become DSA Partner
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contact Info Card -->
+                <div class="bg-white bg-opacity-95 shadow-2xl text-gray-800 rounded-lg p-8">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-6 text-center">Contact Us Today</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt text-red-600 text-xl"></i>
+                            <span class="font-medium">Bhopal, Madhya Pradesh</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-phone text-red-600 text-xl"></i>
+                            <span class="font-medium">+91 91626 207918</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fab fa-instagram text-red-600 text-xl"></i>
+                            <span class="font-medium">@jayshreemahakalfinance</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <h4 class="font-semibold text-blue-600 mb-3">Quick Apply</h4>
+                        <form class="space-y-3" id="quick-apply-form">
+                            <input type="text" placeholder="Full Name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="quick-name" required>
+                            <input type="tel" placeholder="Mobile Number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="quick-mobile" required>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="quick-loan-type" required>
+                                <option value="">Select Loan Type</option>
+                                <option value="personal">Personal Loan</option>
+                                <option value="business">Business Loan</option>
+                                <option value="home">Home Loan</option>
+                                <option value="lap">Loan Against Property</option>
+                                <option value="working-capital">Working Capital Loan</option>
+                            </select>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-semibold rounded transition-colors">
+                                Get Quick Quote
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="loans" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Loan Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive financial solutions designed for your personal and business needs with competitive rates and quick approvals.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                <!-- Services will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- EMI Calculator Section -->
+    <section id="calculator" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">EMI Calculator</h2>
+                <p class="text-xl text-gray-600">Calculate your loan EMI and plan your finances</p>
+            </div>
+
+            <div class="bg-white shadow-xl rounded-lg p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Loan Amount (₹)</label>
+                            <input type="number" id="loan-amount" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   value="100000" min="10000" max="10000000" step="1000">
+                            <div class="text-sm text-gray-500 mt-1">₹10K - ₹1Cr</div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Interest Rate (% per annum)</label>
+                            <input type="number" id="interest-rate" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   value="7.5" min="1" max="30" step="0.1">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Loan Tenure (Years)</label>
+                            <input type="number" id="loan-tenure" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                                   value="5" min="1" max="30" step="1">
+                        </div>
+
+                        <button onclick="calculateEMI()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-semibold rounded transition-colors">
+                            Calculate EMI
+                        </button>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">EMI Details</h3>
+                        <div class="space-y-3" id="emi-results">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Monthly EMI:</span>
+                                <span class="font-semibold" id="monthly-emi">₹0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total Interest:</span>
+                                <span class="font-semibold" id="total-interest">₹0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Total Amount:</span>
+                                <span class="font-semibold" id="total-amount">₹0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DSA Partnership Section -->
+    <section id="dsa" class="py-16 bg-yellow-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Become a DSA Partner</h2>
+                <p class="text-xl text-gray-600">Join our DSA program and earn attractive commissions</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Why Partner With Us?</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-star text-yellow-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Attractive Commission Structure</h4>
+                                <p class="text-gray-600">Earn up to 2% commission on every successful loan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-star text-yellow-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Marketing Support</h4>
+                                <p class="text-gray-600">Complete marketing materials and digital support</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-star text-yellow-500 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold">Training & Certification</h4>
+                                <p class="text-gray-600">Comprehensive training program and certification</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-lg rounded-lg p-8">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-6">Apply for DSA Partnership</h3>
+                    <form id="dsa-application-form" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Full Name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-name" required>
+                            <input type="email" placeholder="Email Address" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-email" required>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <input type="tel" placeholder="Mobile Number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-mobile" required>
+                            <input type="text" placeholder="City" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-city">
+                        </div>
+                        <textarea placeholder="Your Experience in Finance/Sales" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-experience"></textarea>
+                        <textarea placeholder="Background & Why you want to join" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="dsa-background"></textarea>
+                        <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 font-semibold rounded transition-colors">
+                            Submit DSA Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Get in Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Ready to secure your financial future? Contact us today for personalized loan solutions and expert guidance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Contact Information -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-blue-600 mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm">
+                                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Office Location</h4>
+                                    <p class="text-gray-600">Bhopal, Madhya Pradesh</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm">
+                                <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Phone Number</h4>
+                                    <p class="text-gray-600">+91 91626 207918</p>
+                                    <p class="text-sm text-green-600">Available 24/7 for queries</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4 p-4 bg-white rounded-xl shadow-sm">
+                                <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fab fa-instagram text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Instagram</h4>
+                                    <p class="text-gray-600">@jayshreemahakalfinance</p>
+                                    <p class="text-sm text-green-600">Follow for updates & tips</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="bg-white shadow-sm rounded-lg p-6">
+                        <h4 class="text-xl font-bold text-blue-600 mb-4">Business Hours</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-800">Monday - Friday:</span>
+                                <span class="font-semibold text-gray-800">9:00 AM - 7:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-800">Saturday:</span>
+                                <span class="font-semibold text-gray-800">9:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-800">Sunday:</span>
+                                <span class="font-semibold text-red-600">Closed</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                            <p class="text-sm text-green-800 flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Emergency loan queries available 24/7 via phone
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white shadow-lg rounded-lg p-8">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-6">Send us a Message</h3>
+                    <form class="space-y-4" id="contact-form">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name *" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="contact-name" required>
+                            <input type="tel" placeholder="Mobile Number *" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="contact-mobile" required>
+                        </div>
+                        
+                        <input type="email" placeholder="Email Address" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="contact-email">
+                        
+                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="contact-loan-type">
+                            <option value="">Select Loan Type</option>
+                            <option value="personal">Personal Loan</option>
+                            <option value="business">Business Loan</option>
+                            <option value="home">Home Loan</option>
+                            <option value="lap">Loan Against Property</option>
+                            <option value="working-capital">Working Capital Loan</option>
+                            <option value="dsa">DSA Partnership</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+
+                        <textarea placeholder="Your Message or Query *" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" id="contact-message" required></textarea>
+
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" id="contact-consent" class="mt-1" required>
+                            <label for="contact-consent" class="text-sm text-gray-600">
+                                I authorize Jay Shree Mahakal Finance Service to contact me regarding my inquiry.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 font-semibold text-lg rounded transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+
+                    <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                        <p class="text-sm text-gray-600 mb-3">Quick Actions:</p>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 text-sm font-semibold rounded transition-colors" onclick="scrollToSection('calculator')">
+                                <i class="fas fa-calculator mr-1"></i>
+                                Calculate EMI
+                            </button>
+                            <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 text-sm font-semibold rounded transition-colors" onclick="window.open('https://wa.me/919162620791', '_blank')">
+                                <i class="fab fa-whatsapp mr-1"></i>
+                                WhatsApp Us
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Jay Shree Mahakal Finance Service</h3>
+                    <p class="text-gray-300 mb-4">Professional finance services in Bhopal with same-day approvals and minimum documentation.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Our Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#loans" class="hover:text-white">Personal Loan</a></li>
+                        <li><a href="#loans" class="hover:text-white">Business Loan</a></li>
+                        <li><a href="#loans" class="hover:text-white">Home Loan</a></li>
+                        <li><a href="#loans" class="hover:text-white">Loan Against Property</a></li>
+                        <li><a href="#dsa" class="hover:text-white">DSA Partnership</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Bhopal, Madhya Pradesh</p>
+                        <p><i class="fas fa-phone mr-2"></i>+91 91626 207918</p>
+                        <p><i class="fas fa-envelope mr-2"></i>admin@jsmf.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Jay Shree Mahakal Finance Service. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Modal -->
+    <div id="loading-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                <p class="mt-4 text-gray-600">Processing your request...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div class="text-center">
+                <i class="fas fa-check-circle text-green-500 text-4xl mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Success!</h3>
+                <p class="text-gray-600 mb-4" id="success-message">Your request has been submitted successfully.</p>
+                <button onclick="closeModal('success-modal')" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded transition-colors">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
+            <div class="text-center">
+                <i class="fas fa-exclamation-circle text-red-500 text-4xl mb-4"></i>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Error</h3>
+                <p class="text-gray-600 mb-4" id="error-message">Something went wrong. Please try again.</p>
+                <button onclick="closeModal('error-modal')" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded transition-colors">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Portals -->
+    <div class="fixed bottom-4 right-4 z-40">
+        <div class="space-y-2">
+            <a href="admin/login.html" class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full shadow-lg transition-colors text-sm">
+                <i class="fas fa-user-shield mr-2"></i>Admin
+            </a>
+            <a href="dsa/login.html" class="block bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-full shadow-lg transition-colors text-sm">
+                <i class="fas fa-handshake mr-2"></i>DSA
+            </a>
+            <a href="user/login.html" class="block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full shadow-lg transition-colors text-sm">
+                <i class="fas fa-user mr-2"></i>User
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
