@@ -280,7 +280,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.get('/api/dsa-partners', requireRole('admin'), async (req, res) => {
     try {
-      const partners = await storage.getDsaPartners();
+      const partners = await storage.getDsaPartnersWithUserDetails();
       res.json(partners);
     } catch (error) {
       res.status(500).json({ message: "Failed to get DSA partners" });

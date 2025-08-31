@@ -41,6 +41,7 @@ export interface IStorage {
   // DSA partner operations
   createDsaPartner(partner: InsertDsaPartner & { userId: string }): Promise<DsaPartner>;
   getDsaPartners(): Promise<DsaPartner[]>;
+  getDsaPartnersWithUserDetails(): Promise<Array<DsaPartner & { user: Omit<User, 'password'> }>>;
   getDsaPartnerByUserId(userId: string): Promise<DsaPartner | undefined>;
   updateDsaPartner(id: string, updates: Partial<DsaPartner>): Promise<DsaPartner>;
   
@@ -210,6 +211,22 @@ export class MemStorage implements IStorage {
 
   async getDsaPartners(): Promise<DsaPartner[]> {
     return Array.from(this.dsaPartners.values());
+  }
+
+  // Get DSA partners with user details
+  async getDsaPartnersWithUserDetails(): Promise<Array<DsaPartner & { user: Omit<User, 'password'> }>> {
+    const partners = Array.from(this.dsaPartners.values());
+    return partners.map(partner => {
+      const user = this.users.get(partner.userId);
+      if (!user) {
+        throw new Error(`User not found for DSA partner ${partner.id}`);
+      }
+      const { password, ...userWithoutPassword } = user;
+      return {
+        ...partner,
+        user: userWithoutPassword
+      };
+    });
   }
 
   async getDsaPartnerByUserId(userId: string): Promise<DsaPartner | undefined> {
@@ -395,6 +412,24 @@ export class DbStorage implements IStorage {
 
   async getDsaPartners(): Promise<DsaPartner[]> {
     return await db.select().from(dsaPartners);
+  }
+
+  async getDsaPartnersWithUserDetails(): Promise<Array<DsaPartner & { user: Omit<User, 'password'> }>> {
+    const partnersData = await db.select().from(dsaPartners);
+    const result = [];
+    
+    for (const partner of partnersData) {
+      const userData = await db.select().from(users).where(eq(users.id, partner.userId));
+      if (userData[0]) {
+        const { password, ...userWithoutPassword } = userData[0];
+        result.push({
+          ...partner,
+          user: userWithoutPassword
+        });
+      }
+    }
+    
+    return result;
   }
 
   async getDsaPartnerByUserId(userId: string): Promise<DsaPartner | undefined> {

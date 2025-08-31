@@ -434,10 +434,13 @@ export default function AdminDashboard() {
                         <div className="flex justify-between items-start">
                           <div>
                             <h4 className="font-semibold text-text-dark">
-                              DSA Partner {partner.userId.slice(0, 8)}
+                              {partner.user?.fullName || 'DSA Partner'}
                             </h4>
                             <p className="text-sm text-text-muted">
-                              Experience: {partner.experience} • Commission: {partner.commissionRate}%
+                              {partner.user?.mobileNumber || 'No contact'} • {partner.user?.email || 'No email'}
+                            </p>
+                            <p className="text-xs text-text-muted">
+                              Experience: {partner.experience || 'Not specified'} • Commission: {partner.commissionRate}%
                             </p>
                           </div>
                           <div className="flex items-center gap-2">
