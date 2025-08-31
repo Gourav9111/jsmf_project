@@ -79,7 +79,7 @@ export class MemStorage implements IStorage {
       email: "harsh@jsmf.in",
       password: hashedPassword,
       role: "admin",
-      fullName: "Harsh Kumar",
+      fullName: "Harsh Sahu",
       mobileNumber: "+91 91626 207918",
       city: "Bhopal",
       isActive: true,
