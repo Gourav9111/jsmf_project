@@ -44,7 +44,8 @@ export default function UserLogin() {
 
   const loginMutation = useMutation({
     mutationFn: async (data: LoginFormData) => {
-      return apiRequest("POST", "/api/auth/login", data);
+      const response = await apiRequest("POST", "/api/auth/login", data);
+      return await response.json();
     },
     onSuccess: (response: any) => {
       if (response.user?.role === "user") {
@@ -72,7 +73,8 @@ export default function UserLogin() {
 
   const registerMutation = useMutation({
     mutationFn: async (data: RegisterFormData) => {
-      return apiRequest("POST", "/api/users/register", { ...data, role: "user" });
+      const response = await apiRequest("POST", "/api/users/register", { ...data, role: "user" });
+      return await response.json();
     },
     onSuccess: () => {
       toast({
