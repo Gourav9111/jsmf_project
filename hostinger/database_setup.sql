@@ -111,13 +111,13 @@ CREATE TABLE contact_queries (
 );
 
 -- Insert default admin user  
--- Username: harsh@jsmf.in, Password: Harsh@9131
+-- Username: harsh, Password: Harsh@9131
 INSERT INTO users (id, username, email, password, role, full_name, mobile_number, city, is_active, created_at, updated_at) 
 VALUES (
-    UUID(),
+    'admin-001',
+    'harsh',
     'harsh@jsmf.in',
-    'harsh@jsmf.in',
-    '$2y$10$ZcdzNT4nelKHU/yPbnKP1.2ELtxgHGQm3jKfHEAXlJOco3zYls31G',
+    '$2y$10$8KKZe63dX2GWX/joSn6Ck.gutQ7.nAjfi4.KSKs4FQUCtu4RLky/K',
     'admin',
     'Harsh Kumar',
     '+91 91626 207918',
