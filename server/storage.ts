@@ -35,6 +35,7 @@ export interface IStorage {
   getLoanApplications(): Promise<LoanApplication[]>;
   getLoanApplicationsByUser(userId: string): Promise<LoanApplication[]>;
   getLoanApplicationsByDsa(dsaId: string): Promise<LoanApplication[]>;
+  getLoanApplicationsByMobile(mobileNumber: string): Promise<LoanApplication[]>;
   updateLoanApplication(id: string, updates: Partial<LoanApplication>): Promise<LoanApplication>;
   
   // DSA partner operations
@@ -169,6 +170,13 @@ export class MemStorage implements IStorage {
     return Array.from(this.loanApplications.values()).filter(app => app.assignedDsaId === dsaId);
   }
 
+  async getLoanApplicationsByMobile(mobileNumber: string): Promise<LoanApplication[]> {
+    const userWithMobile = Array.from(this.users.values()).find(user => user.mobileNumber === mobileNumber);
+    if (!userWithMobile) return [];
+    
+    return Array.from(this.loanApplications.values()).filter(app => app.userId === userWithMobile.id);
+  }
+
   async updateLoanApplication(id: string, updates: Partial<LoanApplication>): Promise<LoanApplication> {
     const application = this.loanApplications.get(id);
     if (!application) throw new Error("Application not found");
@@ -187,6 +195,7 @@ export class MemStorage implements IStorage {
       userId: partner.userId,
       experience: partner.experience || null,
       background: partner.background || null,
+      profilePicture: null,
       commissionRate: "2.0",
       totalEarnings: "0",
       totalLeads: 0,
@@ -357,6 +366,19 @@ export class DbStorage implements IStorage {
 
   async getLoanApplicationsByDsa(dsaId: string): Promise<LoanApplication[]> {
     return await db.select().from(loanApplications).where(eq(loanApplications.assignedDsaId, dsaId));
+  }
+
+  async getLoanApplicationsByMobile(mobileNumber: string): Promise<LoanApplication[]> {
+    const userList = await db.select().from(users).where(eq(users.mobileNumber, mobileNumber));
+    if (!userList.length) return [];
+    
+    const userIds = userList.map(u => u.id);
+    const applications = [];
+    for (const userId of userIds) {
+      const userApps = await db.select().from(loanApplications).where(eq(loanApplications.userId, userId));
+      applications.push(...userApps);
+    }
+    return applications;
   }
 
   async updateLoanApplication(id: string, updates: Partial<LoanApplication>): Promise<LoanApplication> {

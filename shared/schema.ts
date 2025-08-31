@@ -40,6 +40,7 @@ export const dsaPartners = pgTable("dsa_partners", {
   userId: varchar("user_id").references(() => users.id).notNull(),
   experience: text("experience"),
   background: text("background"),
+  profilePicture: text("profile_picture"), // URL to uploaded profile picture
   commissionRate: decimal("commission_rate", { precision: 5, scale: 2 }).default("2.0"),
   totalEarnings: decimal("total_earnings", { precision: 12, scale: 2 }).default("0"),
   totalLeads: integer("total_leads").default(0),

@@ -20,7 +20,8 @@ import {
   UserPlus,
   CheckCircle,
   XCircle,
-  Clock
+  Clock,
+  Download
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -97,6 +98,40 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     logoutMutation.mutate();
+  };
+
+  const handleExport = async (type: 'loan-applications' | 'leads' | 'dsa-partners') => {
+    try {
+      const response = await fetch(`/api/export/${type}`, {
+        credentials: 'include',
+      });
+      
+      if (!response.ok) {
+        throw new Error('Export failed');
+      }
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `${type}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      toast({
+        title: "Export Successful",
+        description: `${type.replace('-', ' ')} data has been downloaded.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Export Failed",
+        description: "Unable to download data. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getStatusBadge = (status: string) => {
@@ -216,7 +251,19 @@ export default function AdminDashboard() {
           <TabsContent value="applications">
             <Card>
               <CardHeader>
-                <CardTitle>Loan Applications</CardTitle>
+                <div className="flex justify-between items-center">
+                  <CardTitle>Loan Applications</CardTitle>
+                  <Button
+                    onClick={() => handleExport('loan-applications')}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                    data-testid="button-export-applications"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export CSV
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4" data-testid="applications-list">
@@ -271,7 +318,19 @@ export default function AdminDashboard() {
           <TabsContent value="leads">
             <Card>
               <CardHeader>
-                <CardTitle>Lead Management</CardTitle>
+                <div className="flex justify-between items-center">
+                  <CardTitle>Lead Management</CardTitle>
+                  <Button
+                    onClick={() => handleExport('leads')}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                    data-testid="button-export-leads"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export CSV
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4" data-testid="leads-list">
@@ -326,7 +385,19 @@ export default function AdminDashboard() {
           <TabsContent value="dsa">
             <Card>
               <CardHeader>
-                <CardTitle>DSA Partners</CardTitle>
+                <div className="flex justify-between items-center">
+                  <CardTitle>DSA Partners</CardTitle>
+                  <Button
+                    onClick={() => handleExport('dsa-partners')}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2"
+                    data-testid="button-export-dsa"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export CSV
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4" data-testid="dsa-partners-list">

@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import session from "express-session";
+import bcrypt from "bcrypt";
 import { 
   insertUserSchema, 
   insertLoanApplicationSchema, 
@@ -9,6 +10,28 @@ import {
   insertLeadSchema, 
   insertContactQuerySchema 
 } from "@shared/schema";
+
+// CSV conversion utility
+function convertToCSV(data: any[]): string {
+  if (!data.length) return '';
+  
+  const headers = Object.keys(data[0]);
+  const csvRows = [
+    headers.join(','),
+    ...data.map(row => 
+      headers.map(key => {
+        const value = row[key];
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string' && value.includes(',')) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return String(value);
+      }).join(',')
+    )
+  ];
+  
+  return csvRows.join('\n');
+}
 
 // Session middleware
 function setupSession(app: Express) {
@@ -58,6 +81,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       if (!user) {
         return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      // Check KYC status for DSA users
+      if (user.role === 'dsa') {
+        const dsaPartner = await storage.getDsaPartnerByUserId(user.id);
+        if (!dsaPartner || dsaPartner.kycStatus !== 'verified') {
+          return res.status(403).json({ message: "KYC verification required. Please contact admin." });
+        }
       }
 
       req.session.userId = user.id;
@@ -233,6 +264,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin routes for DSA management
+  app.patch('/api/dsa-partners/:id/kyc', requireRole('admin'), async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { kycStatus } = req.body;
+      const partner = await storage.updateDsaPartner(id, { kycStatus });
+      res.json(partner);
+    } catch (error) {
+      res.status(400).json({ message: "Failed to update KYC status" });
+    }
+  });
+
+  app.patch('/api/users/:id/password', requireRole('admin'), async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { password } = req.body;
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await storage.updateUser(id, { password: hashedPassword });
+      res.json({ message: "Password updated successfully" });
+    } catch (error) {
+      res.status(400).json({ message: "Failed to update password" });
+    }
+  });
+
+  app.patch('/api/dsa-partners/:id/profile-picture', requireRole('dsa'), async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { profilePicture } = req.body;
+      const partner = await storage.updateDsaPartner(id, { profilePicture });
+      res.json(partner);
+    } catch (error) {
+      res.status(400).json({ message: "Failed to update profile picture" });
+    }
+  });
+
   // Lead management routes
   app.post('/api/leads', async (req, res) => {
     try {
@@ -301,6 +367,54 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(queries);
     } catch (error) {
       res.status(500).json({ message: "Failed to get contact queries" });
+    }
+  });
+
+  // Application tracking by mobile number
+  app.get('/api/applications/track/:mobileNumber', async (req, res) => {
+    try {
+      const { mobileNumber } = req.params;
+      const applications = await storage.getLoanApplicationsByMobile(mobileNumber);
+      res.json(applications);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to track applications" });
+    }
+  });
+
+  // Excel download routes
+  app.get('/api/export/loan-applications', requireRole('admin'), async (req, res) => {
+    try {
+      const applications = await storage.getLoanApplications();
+      const csvData = convertToCSV(applications);
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=loan-applications.csv');
+      res.send(csvData);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to export applications" });
+    }
+  });
+
+  app.get('/api/export/leads', requireRole('admin'), async (req, res) => {
+    try {
+      const leads = await storage.getLeads();
+      const csvData = convertToCSV(leads);
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=leads.csv');
+      res.send(csvData);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to export leads" });
+    }
+  });
+
+  app.get('/api/export/dsa-partners', requireRole('admin'), async (req, res) => {
+    try {
+      const partners = await storage.getDsaPartners();
+      const csvData = convertToCSV(partners);
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename=dsa-partners.csv');
+      res.send(csvData);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to export DSA partners" });
     }
   });
 

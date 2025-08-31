@@ -11,6 +11,8 @@ import DsaLogin from "@/pages/dsa-login";
 import DsaDashboard from "@/pages/dsa-dashboard";
 import UserLogin from "@/pages/user-login";
 import UserDashboard from "@/pages/user-dashboard";
+import TermsAndConditions from "@/pages/terms-and-conditions";
+import TrackApplication from "@/pages/track-application";
 
 function Router() {
   return (
@@ -22,6 +24,8 @@ function Router() {
       <Route path="/dsa/dashboard" component={DsaDashboard} />
       <Route path="/user" component={UserLogin} />
       <Route path="/user/dashboard" component={UserDashboard} />
+      <Route path="/terms" component={TermsAndConditions} />
+      <Route path="/track-application" component={TrackApplication} />
       <Route component={NotFound} />
     </Switch>
   );
