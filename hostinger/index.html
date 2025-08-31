@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jay Shree Mahakal Finance Service - Loan Solutions in Bhopal</title>
+    <meta name="description" content="Professional finance services in Bhopal with same-day approvals and minimum documentation. Personal loans, business loans, home loans with 7.5% ROI.">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo Section -->
+                <a href="#home" class="logo">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Jay Shree Mahakal</h1>
+                            <p>Finance Service</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#loans">Loans</a>
+                    <a href="#calculator">EMI Calculator</a>
+                    <a href="#dsa">DSA Partner</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu">
+                <a href="#home">Home</a>
+                <a href="#loans">Loans</a>
+                <a href="#calculator">EMI Calculator</a>
+                <a href="#dsa">DSA Partner</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-background"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <!-- Company Logo -->
+                    <div class="hero-logo">
+                        <div class="hero-logo-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="hero-logo-text">
+                            <h2>Jay Shree Mahakal</h2>
+                            <p>Finance Service</p>
+                        </div>
+                    </div>
+                    
+                    <div class="roi-badge">
+                        <span class="roi-text">7.5% ROI</span> - Reducing Interest Rate
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Fast & Secure <span class="highlight">Loan Solutions</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Professional finance services in Bhopal with same-day approvals and minimum documentation.
+                    </p>
+
+                    <!-- Key Highlights -->
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Same-day Personal Loan</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Salary eligibility from ₹15k+</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Daily Business Funding</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Minimum Documents Required</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToSection('loans')">
+                            Apply Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="scrollToSection('calculator')">
+                            Calculate EMI
+                        </button>
+                        <button class="btn btn-accent" onclick="scrollToSection('dsa')">
+                            Become DSA Partner
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contact Info Card -->
+                <div class="hero-right">
+                    <div class="contact-card">
+                        <h3>Contact Us Today</h3>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bhopal, Madhya Pradesh</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 91626 207918</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-instagram"></i>
+                                <span>@jayshreemahakalfinance</span>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-apply">
+                            <h4>Quick Apply</h4>
+                            <form class="quick-form" id="quick-apply-form">
+                                <input type="text" placeholder="Full Name" id="quick-name" required>
+                                <input type="tel" placeholder="Mobile Number" id="quick-mobile" required>
+                                <select id="quick-loan-type" required>
+                                    <option value="">Select Loan Type</option>
+                                    <option value="personal">Personal Loan</option>
+                                    <option value="business">Business Loan</option>
+                                    <option value="home">Home Loan</option>
+                                    <option value="lap">Loan Against Property</option>
+                                    <option value="working-capital">Working Capital Loan</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">
+                                    Get Quick Quote
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="loans" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Loan Services</h2>
+                <p>Comprehensive financial solutions designed for your personal and business needs with competitive rates and quick approvals.</p>
+            </div>
+
+            <div class="services-grid" id="services-grid">
+                <!-- Services will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- EMI Calculator Section -->
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>EMI Calculator</h2>
+                <p>Calculate your loan EMI and plan your finances</p>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label>Loan Amount (₹)</label>
+                        <input type="number" id="loan-amount" value="100000" min="10000" max="10000000" step="1000">
+                        <small>₹10K - ₹1Cr</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Interest Rate (% per annum)</label>
+                        <input type="number" id="interest-rate" value="7.5" min="1" max="30" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>Loan Tenure (Years)</label>
+                        <input type="number" id="loan-tenure" value="5" min="1" max="30" step="1">
+                    </div>
+
+                    <button onclick="calculateEMI()" class="btn btn-primary">
+                        Calculate EMI
+                    </button>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>EMI Details</h3>
+                    <div class="result-item">
+                        <span>Monthly EMI:</span>
+                        <span id="monthly-emi">₹0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Interest:</span>
+                        <span id="total-interest">₹0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Total Amount:</span>
+                        <span id="total-amount">₹0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DSA Partnership Section -->
+    <section id="dsa" class="dsa-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Become a DSA Partner</h2>
+                <p>Join our DSA program and earn attractive commissions</p>
+            </div>
+
+            <div class="dsa-content">
+                <div class="dsa-benefits">
+                    <h3>Why Partner With Us?</h3>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Attractive Commission Structure</h4>
+                                <p>Earn up to 2% commission on every successful loan</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Marketing Support</h4>
+                                <p>Complete marketing materials and digital support</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Training & Certification</h4>
+                                <p>Comprehensive training program and certification</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dsa-form-container">
+                    <h3>Apply for DSA Partnership</h3>
+                    <form id="dsa-application-form" class="dsa-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Full Name" id="dsa-name" required>
+                            <input type="email" placeholder="Email Address" id="dsa-email" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" placeholder="Mobile Number" id="dsa-mobile" required>
+                            <input type="text" placeholder="City" id="dsa-city">
+                        </div>
+                        <textarea placeholder="Your Experience in Finance/Sales" rows="3" id="dsa-experience"></textarea>
+                        <textarea placeholder="Background & Why you want to join" rows="3" id="dsa-background"></textarea>
+                        <button type="submit" class="btn btn-accent">
+                            Submit DSA Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Ready to secure your financial future? Contact us today for personalized loan solutions and expert guidance.</p>
+            </div>
+
+            <div class="contact-content">
+                <!-- Contact Information -->
+                <div class="contact-info-container">
+                    <h3>Contact Information</h3>
+                    <div class="contact-cards">
+                        <div class="contact-card-item">
+                            <div class="contact-icon blue">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Office Location</h4>
+                                <p>Bhopal, Madhya Pradesh</p>
+                            </div>
+                        </div>
+                        <div class="contact-card-item">
+                            <div class="contact-icon red">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone Number</h4>
+                                <p>+91 91626 207918</p>
+                                <small>Available 24/7 for queries</small>
+                            </div>
+                        </div>
+                        <div class="contact-card-item">
+                            <div class="contact-icon gradient">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h4>Instagram</h4>
+                                <p>@jayshreemahakalfinance</p>
+                                <small>Follow for updates & tips</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div class="business-hours">
+                        <h4>Business Hours</h4>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span>Monday - Friday:</span>
+                                <span>9:00 AM - 7:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Saturday:</span>
+                                <span>9:00 AM - 5:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span>Sunday:</span>
+                                <span class="closed">Closed</span>
+                            </div>
+                        </div>
+                        <div class="emergency-note">
+                            <i class="fas fa-info-circle"></i>
+                            Emergency loan queries available 24/7 via phone
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3>Send us a Message</h3>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <input type="text" placeholder="Your Name *" id="contact-name" required>
+                            <input type="tel" placeholder="Mobile Number *" id="contact-mobile" required>
+                        </div>
+                        
+                        <input type="email" placeholder="Email Address" id="contact-email">
+                        
+                        <select id="contact-loan-type">
+                            <option value="">Select Loan Type</option>
+                            <option value="personal">Personal Loan</option>
+                            <option value="business">Business Loan</option>
+                            <option value="home">Home Loan</option>
+                            <option value="lap">Loan Against Property</option>
+                            <option value="working-capital">Working Capital Loan</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+
+                        <textarea placeholder="Your Message *" rows="5" id="contact-message" required></textarea>
+
+                        <div class="consent-checkbox">
+                            <input type="checkbox" id="contact-consent" required>
+                            <label for="contact-consent">I authorize Jay Shree Mahakal Finance Service to contact me via phone, email, or SMS for loan-related queries and updates.</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>Jay Shree Mahakal Finance Service</h3>
+                        <p>Professional finance solutions in Bhopal with same-day approvals and competitive rates.</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#loans">Loan Services</a></li>
+                        <li><a href="#calculator">EMI Calculator</a></li>
+                        <li><a href="#dsa">DSA Partnership</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 91626 207918</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Bhopal, MP</li>
+                        <li><i class="fab fa-instagram"></i> @jayshreemahakalfinance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Jay Shree Mahakal Finance Service. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Messages -->
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+        <button onclick="closeNotification()">&times;</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
