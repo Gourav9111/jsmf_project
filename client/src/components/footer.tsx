@@ -138,6 +138,10 @@ export default function Footer() {
                 <Instagram className="text-primary w-4 h-4" />
                 <span className="text-gray-400">@jayshreemahakalfinance</span>
               </li>
+              <li className="flex items-center space-x-2 text-sm">
+                <Phone className="text-primary w-4 h-4" />
+                <span className="text-gray-400">customercare@jsmf.in</span>
+              </li>
             </ul>
 
             {/* Portal Links */}
