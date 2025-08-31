@@ -165,7 +165,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Loan application routes
+  // Direct loan application routes (no authentication required)
+  app.post('/api/loan-applications/direct', async (req, res) => {
+    try {
+      const { applicantInfo, loanType, amount, tenure, monthlyIncome, employmentType, purpose } = req.body;
+      
+      // Validate required fields
+      if (!applicantInfo?.fullName || !applicantInfo?.mobileNumber || !applicantInfo?.email || !loanType) {
+        return res.status(400).json({ message: "Missing required fields" });
+      }
+
+      // Create a lead directly (no user account needed)
+      const lead = await storage.createLead({
+        name: applicantInfo.fullName,
+        mobileNumber: applicantInfo.mobileNumber,
+        email: applicantInfo.email,
+        loanType: loanType,
+        amount: amount || "0",
+        city: applicantInfo.city || "Bhopal",
+        source: "direct_application"
+      });
+      
+      res.status(201).json({ 
+        message: "Application submitted successfully",
+        applicationId: lead.id,
+        trackingNumber: lead.id
+      });
+    } catch (error) {
+      console.error("Direct application creation error:", error);
+      res.status(400).json({ message: "Failed to create application" });
+    }
+  });
+
+  // Loan application routes (authenticated users)
   app.post('/api/loan-applications', requireAuth, async (req, res) => {
     try {
       const applicationData = insertLoanApplicationSchema.parse(req.body);
@@ -276,6 +308,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Remove DSA user
+  app.delete('/api/dsa-partners/:id', requireRole('admin'), async (req, res) => {
+    try {
+      const { id } = req.params;
+      // Note: In a real implementation, you'd delete from database
+      // For now, we'll just deactivate the user
+      const partner = await storage.updateDsaPartner(id, { kycStatus: 'rejected' });
+      res.json({ message: "DSA partner removed successfully" });
+    } catch (error) {
+      res.status(400).json({ message: "Failed to remove DSA partner" });
+    }
+  });
+
   app.patch('/api/users/:id/password', requireRole('admin'), async (req, res) => {
     try {
       const { id } = req.params;
@@ -370,12 +415,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Application tracking by mobile number
+  // Application tracking by mobile number - track leads instead of applications
   app.get('/api/applications/track/:mobileNumber', async (req, res) => {
     try {
       const { mobileNumber } = req.params;
-      const applications = await storage.getLoanApplicationsByMobile(mobileNumber);
-      res.json(applications);
+      // Get leads by mobile number since direct applications create leads
+      const leads = await storage.getLeads();
+      const userLeads = leads.filter(lead => lead.mobileNumber === mobileNumber);
+      res.json(userLeads);
     } catch (error) {
       res.status(500).json({ message: "Failed to track applications" });
     }

@@ -299,8 +299,9 @@ export default function AdminDashboard() {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="pending">Pending</SelectItem>
-                                <SelectItem value="under-review">Under Review</SelectItem>
+                                <SelectItem value="processing">Processing</SelectItem>
                                 <SelectItem value="approved">Approved</SelectItem>
+                                <SelectItem value="completed">Completed</SelectItem>
                                 <SelectItem value="rejected">Rejected</SelectItem>
                               </SelectContent>
                             </Select>
@@ -350,28 +351,52 @@ export default function AdminDashboard() {
                             {lead.status}
                           </Badge>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center gap-4">
                           <p className="text-sm text-text-muted">
                             {lead.assignedDsaId ? "Assigned" : "Unassigned"}
                           </p>
-                          {!lead.assignedDsaId && (
+                          <div className="flex gap-2">
                             <Select
-                              onValueChange={(value) => 
-                                assignLeadMutation.mutate({ leadId: lead.id, dsaId: value })
-                              }
+                              value={lead.status}
+                              onValueChange={(value) => {
+                                fetch(`/api/leads/${lead.id}`, {
+                                  method: 'PATCH',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ status: value })
+                                }).then(() => window.location.reload());
+                              }}
                             >
-                              <SelectTrigger className="w-48">
-                                <SelectValue placeholder="Assign to DSA" />
+                              <SelectTrigger className="w-32">
+                                <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
-                                {dsaPartners.map((dsa: any) => (
-                                  <SelectItem key={dsa.userId} value={dsa.userId}>
-                                    DSA Partner {dsa.userId.slice(0, 8)}
-                                  </SelectItem>
-                                ))}
+                                <SelectItem value="new">New</SelectItem>
+                                <SelectItem value="pending">Pending</SelectItem>
+                                <SelectItem value="processing">Processing</SelectItem>
+                                <SelectItem value="approved">Approved</SelectItem>
+                                <SelectItem value="completed">Completed</SelectItem>
+                                <SelectItem value="rejected">Rejected</SelectItem>
                               </SelectContent>
                             </Select>
-                          )}
+                            {!lead.assignedDsaId && (
+                              <Select
+                                onValueChange={(value) => 
+                                  assignLeadMutation.mutate({ leadId: lead.id, dsaId: value })
+                                }
+                              >
+                                <SelectTrigger className="w-48">
+                                  <SelectValue placeholder="Assign to DSA" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {dsaPartners.map((dsa: any) => (
+                                    <SelectItem key={dsa.userId} value={dsa.userId}>
+                                      DSA Partner {dsa.userId.slice(0, 8)}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            )}
+                          </div>
                         </div>
                       </div>
                     ))
@@ -415,9 +440,15 @@ export default function AdminDashboard() {
                               Experience: {partner.experience} • Commission: {partner.commissionRate}%
                             </p>
                           </div>
-                          <Badge variant="outline" className="capitalize">
-                            {partner.kycStatus}
-                          </Badge>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline" className={`capitalize ${
+                              partner.kycStatus === 'verified' ? 'bg-green-100 text-green-800' :
+                              partner.kycStatus === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                              'bg-red-100 text-red-800'
+                            }`}>
+                              {partner.kycStatus}
+                            </Badge>
+                          </div>
                         </div>
                         <div className="grid grid-cols-3 gap-4 text-sm">
                           <div>
@@ -432,6 +463,67 @@ export default function AdminDashboard() {
                             <span className="text-text-muted">Earnings:</span>
                             <span className="font-semibold ml-1">₹{parseInt(partner.totalEarnings).toLocaleString('en-IN')}</span>
                           </div>
+                        </div>
+                        <div className="flex gap-2 pt-2">
+                          {partner.kycStatus === 'pending' && (
+                            <>
+                              <Button
+                                size="sm"
+                                onClick={() => {
+                                  fetch(`/api/dsa-partners/${partner.id}/kyc`, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ kycStatus: 'verified' })
+                                  }).then(() => window.location.reload());
+                                }}
+                                className="bg-green-600 hover:bg-green-700"
+                              >
+                                Approve KYC
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="destructive"
+                                onClick={() => {
+                                  fetch(`/api/dsa-partners/${partner.id}/kyc`, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ kycStatus: 'rejected' })
+                                  }).then(() => window.location.reload());
+                                }}
+                              >
+                                Reject KYC
+                              </Button>
+                            </>
+                          )}
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
+                              const newPassword = prompt('Enter new password for DSA user:');
+                              if (newPassword) {
+                                fetch(`/api/users/${partner.userId}/password`, {
+                                  method: 'PATCH',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ password: newPassword })
+                                }).then(() => alert('Password updated successfully'));
+                              }
+                            }}
+                          >
+                            Reset Password
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => {
+                              if (confirm('Are you sure you want to remove this DSA partner?')) {
+                                fetch(`/api/dsa-partners/${partner.id}`, {
+                                  method: 'DELETE'
+                                }).then(() => window.location.reload());
+                              }
+                            }}
+                          >
+                            Remove DSA
+                          </Button>
                         </div>
                       </div>
                     ))

@@ -13,6 +13,7 @@ import UserLogin from "@/pages/user-login";
 import UserDashboard from "@/pages/user-dashboard";
 import TermsAndConditions from "@/pages/terms-and-conditions";
 import TrackApplication from "@/pages/track-application";
+import TrackStatus from "@/pages/track-status";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/user/dashboard" component={UserDashboard} />
       <Route path="/terms" component={TermsAndConditions} />
       <Route path="/track-application" component={TrackApplication} />
+      <Route path="/track-status" component={TrackStatus} />
       <Route component={NotFound} />
     </Switch>
   );

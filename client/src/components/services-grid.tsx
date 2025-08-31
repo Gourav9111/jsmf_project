@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, Star } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
+import DirectLoanApplication from "@/components/direct-loan-application";
 
 interface ServiceCard {
   title: string;
@@ -74,17 +76,18 @@ const services: ServiceCard[] = [
 ];
 
 export default function ServicesGrid() {
-  const handleServiceClick = (serviceType: string) => {
-    // Navigate to user portal for loan application
-    if (serviceType !== "DSA Partnership") {
-      window.location.href = "/user";
-    } else {
-      // Scroll to DSA section
-      const element = document.getElementById('dsa');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+  const [selectedLoanType, setSelectedLoanType] = useState<string | null>(null);
+
+  const handleDSAClick = () => {
+    // Scroll to DSA section
+    const element = document.getElementById('dsa');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleLoanClick = (loanType: string) => {
+    setSelectedLoanType(loanType);
   };
 
   return (
@@ -143,22 +146,40 @@ export default function ServicesGrid() {
                   ))}
                 </ul>
                 
-                <Button 
-                  className={`w-full py-3 font-semibold transition-colors ${
-                    service.isSpecial 
-                      ? 'bg-yellow-500 hover:bg-yellow-600 text-black' 
-                      : 'bg-primary hover:bg-blue-700 text-white'
-                  }`}
-                  onClick={() => handleServiceClick(service.title)}
-                  data-testid={`service-apply-button-${index}`}
-                >
-                  {service.title === "DSA Partnership" ? "Become DSA Partner" : `Apply ${service.title}`}
-                </Button>
+                {service.isSpecial ? (
+                  <Button 
+                    className="w-full py-3 font-semibold transition-colors bg-yellow-500 hover:bg-yellow-600 text-black"
+                    onClick={handleDSAClick}
+                    data-testid={`service-apply-button-${index}`}
+                  >
+                    Become DSA Partner
+                  </Button>
+                ) : (
+                  <Button 
+                    className="w-full py-3 font-semibold transition-colors bg-primary hover:bg-blue-700 text-white"
+                    onClick={() => handleLoanClick(service.title)}
+                    data-testid={`service-apply-button-${index}`}
+                  >
+                    Apply {service.title}
+                  </Button>
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
+      
+      {/* Loan Application Modal */}
+      {selectedLoanType && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <DirectLoanApplication 
+              loanType={selectedLoanType} 
+              onApply={() => setSelectedLoanType(null)}
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
